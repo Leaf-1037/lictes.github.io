@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="这里主要放一些常用的模板，或许有的时候会用。尤其是NOIP备考的时候，多少多少有个根据吧。  123456789101112131415161718192021#include&amp;lt;cstdio&amp;gt;#include&amp;lt;cstring&amp;gt;#include&amp;lt;cmath&amp;gt;#include&amp;lt;cstdlib&amp;gt;#include&amp;lt;iostream&amp;gt;#inclu">
+<meta name="description" content="这里主要放一些常用的模板，或许有的时候会用。尤其是NOIP备考的时候，多少有个根据吧。  123456789101112131415161718192021#include&amp;lt;cstdio&amp;gt;#include&amp;lt;cstring&amp;gt;#include&amp;lt;cmath&amp;gt;#include&amp;lt;cstdlib&amp;gt;#include&amp;lt;iostream&amp;gt;#include">
 <meta name="keywords" content="板子">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模板">
 <meta property="og:url" content="http://yoursite.com/2018/11/13/模板/index.html">
 <meta property="og:site_name" content="Leaves">
-<meta property="og:description" content="这里主要放一些常用的模板，或许有的时候会用。尤其是NOIP备考的时候，多少多少有个根据吧。  123456789101112131415161718192021#include&amp;lt;cstdio&amp;gt;#include&amp;lt;cstring&amp;gt;#include&amp;lt;cmath&amp;gt;#include&amp;lt;cstdlib&amp;gt;#include&amp;lt;iostream&amp;gt;#inclu">
+<meta property="og:description" content="这里主要放一些常用的模板，或许有的时候会用。尤其是NOIP备考的时候，多少有个根据吧。  123456789101112131415161718192021#include&amp;lt;cstdio&amp;gt;#include&amp;lt;cstring&amp;gt;#include&amp;lt;cmath&amp;gt;#include&amp;lt;cstdlib&amp;gt;#include&amp;lt;iostream&amp;gt;#include">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-13T12:08:07.738Z">
+<meta property="og:updated_time" content="2018-11-14T15:26:26.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模板">
-<meta name="twitter:description" content="这里主要放一些常用的模板，或许有的时候会用。尤其是NOIP备考的时候，多少多少有个根据吧。  123456789101112131415161718192021#include&amp;lt;cstdio&amp;gt;#include&amp;lt;cstring&amp;gt;#include&amp;lt;cmath&amp;gt;#include&amp;lt;cstdlib&amp;gt;#include&amp;lt;iostream&amp;gt;#inclu">
+<meta name="twitter:description" content="这里主要放一些常用的模板，或许有的时候会用。尤其是NOIP备考的时候，多少有个根据吧。  123456789101112131415161718192021#include&amp;lt;cstdio&amp;gt;#include&amp;lt;cstring&amp;gt;#include&amp;lt;cmath&amp;gt;#include&amp;lt;cstdlib&amp;gt;#include&amp;lt;iostream&amp;gt;#include">
 
 
 
@@ -311,7 +311,7 @@
 
       
         <hr>
-<p>这里主要放一些常用的模板，或许有的时候会用。尤其是NOIP备考的时候，多少多少有个根据吧。</p>
+<p>这里主要放一些常用的模板，或许有的时候会用。尤其是NOIP备考的时候，多少有个根据吧。</p>
 <hr>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(x) memset(x,0,sizeof(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,x,y) for(int i=x;i&lt;=y;i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> c=getc(<span class="built_in">stdin</span>);<span class="keyword">int</span> x=<span class="number">0</span>,base=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>;c=getc(<span class="built_in">stdin</span>))<span class="keyword">if</span>(c==<span class="string">'-'</span>) base=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>;c=getc(<span class="built_in">stdin</span>)) x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(c^<span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">return</span> base*x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">file_</span><span class="params">()</span></span>&#123;</span><br><span class="line">    freopen(<span class="string">"test.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">"test.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -418,10 +418,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
