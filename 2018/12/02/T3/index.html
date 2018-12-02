@@ -79,15 +79,18 @@
 
 
 
+<meta name="description" content="二维前缀和公式$S_{i,j} = S_{i-1,j} + S_{i,j-1} - S_{i-1,j-1} + A_{i,j}$ 差分：优化区间减法或加法原题链接 https://www.luogu.org/problem/show?pid=P2879 题目大意有n个数初始值为h，给定r个区间[L,R]表示在区间[L,R]每个数减一，求最后每个数的值 做法记$t_i = a_i - a_{i-1">
 <meta name="keywords" content="前缀和,差分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前缀和与差分">
 <meta property="og:url" content="http://yoursite.com/2018/12/02/T3/index.html">
 <meta property="og:site_name" content="Leaves">
+<meta property="og:description" content="二维前缀和公式$S_{i,j} = S_{i-1,j} + S_{i,j-1} - S_{i-1,j-1} + A_{i,j}$ 差分：优化区间减法或加法原题链接 https://www.luogu.org/problem/show?pid=P2879 题目大意有n个数初始值为h，给定r个区间[L,R]表示在区间[L,R]每个数减一，求最后每个数的值 做法记$t_i = a_i - a_{i-1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T05:42:27.769Z">
+<meta property="og:updated_time" content="2018-12-02T05:47:30.631Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前缀和与差分">
+<meta name="twitter:description" content="二维前缀和公式$S_{i,j} = S_{i-1,j} + S_{i,j-1} - S_{i-1,j-1} + A_{i,j}$ 差分：优化区间减法或加法原题链接 https://www.luogu.org/problem/show?pid=P2879 题目大意有n个数初始值为h，给定r个区间[L,R]表示在区间[L,R]每个数减一，求最后每个数的值 做法记$t_i = a_i - a_{i-1">
 
 
 
@@ -349,8 +352,7 @@
       
 
       
-        <hr>
-<a id="more"></a>
+        <a id="more"></a>
 <h4 id="二维前缀和公式"><a href="#二维前缀和公式" class="headerlink" title="二维前缀和公式"></a>二维前缀和公式</h4><pre><code>$S_{i,j} = S_{i-1,j} + S_{i,j-1} - S_{i-1,j-1} + A_{i,j}$
 </code></pre><h4 id="差分：优化区间减法或加法"><a href="#差分：优化区间减法或加法" class="headerlink" title="差分：优化区间减法或加法"></a>差分：优化区间减法或加法</h4><p>原题链接 <a href="https://www.luogu.org/problem/show?pid=P2879" target="_blank" rel="noopener">https://www.luogu.org/problem/show?pid=P2879</a></p>
 <h5 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h5><pre><code>有n个数初始值为h，给定r个区间[L,R]表示在区间[L,R]每个数减一，求最后每个数的值
@@ -741,6 +743,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
