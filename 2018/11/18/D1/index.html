@@ -1,99 +1,141 @@
-extends includes/layout.pug
-
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-            time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
-
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Licte's OI Events ( to be continued... )"><meta name="keywords" content=""><meta name="author" content="licte"><meta name="copyright" content="licte"><title>Licte's OI Events ( to be continued... ) | Leaves</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.5.6"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.5.6"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#正式参加OI之前"><span class="toc-number">1.</span> <span class="toc-text">正式参加OI之前</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#OI历程"><span class="toc-number">2.</span> <span class="toc-text">OI历程</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">licte</div><div class="author-info__description text-center">古今多少事 渔起唱三更.</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">5</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">6</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">2</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Leaves</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="post-info"><div id="post-title">Licte's OI Events ( to be continued... )</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-18</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Diary/">Diary</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><hr>
+<p><em>这里记录我过去的OI历程。</em></p>
+<a id="more"></a>
+<hr>
+<h5 id="正式参加OI之前"><a href="#正式参加OI之前" class="headerlink" title="正式参加OI之前"></a>正式参加OI之前</h5><hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">时间</th>
+<th style="text-align:center">事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2015-11</td>
+<td style="text-align:center">“Hello,world”</td>
+</tr>
+<tr>
+<td style="text-align:center">2015-2016</td>
+<td style="text-align:center">学习Pascal语言</td>
+</tr>
+<tr>
+<td style="text-align:center">2016-6</td>
+<td style="text-align:center">因故未参加丹阳夏令营</td>
+</tr>
+<tr>
+<td style="text-align:center">2016-7</td>
+<td style="text-align:center">用VB做了个没有任何用的较大的程序</td>
+</tr>
+<tr>
+<td style="text-align:center">2016-11</td>
+<td style="text-align:center">NOIP普及组初赛 失败</td>
+</tr>
+<tr>
+<td style="text-align:center">2016-12</td>
+<td style="text-align:center">开始转C++</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-1</td>
+<td style="text-align:center">因故未参加南京冬令营</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-4</td>
+<td style="text-align:center">学习C#</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-4</td>
+<td style="text-align:center">制作Leaves 想法是代码托管库 但只做了登录界面</td>
+</tr>
+<tr>
+<td style="text-align:center">2016-12 ~ 2017-5</td>
+<td style="text-align:center">学习C++基础语法</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-2-10</td>
+<td style="text-align:center">有了开始OI竞赛的想法</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-6-17</td>
+<td style="text-align:center">学习C++ 正式转语言</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-7-5</td>
+<td style="text-align:center">过语言关 开始接触基础算法</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-7 ~ 2018-8-8</td>
+<td style="text-align:center">自学 根基不牢</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5 id="OI历程"><a href="#OI历程" class="headerlink" title="OI历程"></a>OI历程</h5><hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">时间</th>
+<th style="text-align:center">事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2018-8-9</td>
+<td style="text-align:center">常州一中夏令营开始</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-8-9 ~ 2018-8-13</td>
+<td style="text-align:center">成绩不佳 深受打击；同时开始接触OIer 深感厌恶</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-8-12</td>
+<td style="text-align:center">被同学说服 放弃OI</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-8-13</td>
+<td style="text-align:center">提前结束了夏令营</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-8-13 ~ 2018-8-20</td>
+<td style="text-align:center">失落期</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-10-1</td>
+<td style="text-align:center">再度参加OI</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-10-8 ~ 2018-10-12</td>
+<td style="text-align:center">备考NOIP初赛</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-10-13</td>
+<td style="text-align:center">NOIP提高组初赛 通过</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-10-28 ~ 2018-11-9</td>
+<td style="text-align:center">备考NOIP复赛 处于半停课状态</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-11-10 ~ 2018-11-11</td>
+<td style="text-align:center">NOIP复赛</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-11-13</td>
+<td style="text-align:center">开通博客</td>
+</tr>
+<tr>
+<td style="text-align:center">2018-11-13 ~</td>
+<td style="text-align:center">平衡 MO OI 文化课 ，备考NOIP2019</td>
+</tr>
+</tbody>
+</table>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">licte</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2018/11/18/D1/">http://yoursite.com/2018/11/18/D1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">Leaves</a>！</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/12/02/T3/"><i class="fa fa-chevron-left">  </i><span>前缀和与差分</span></a></div><div class="next-post pull-right"><a href="/2018/11/15/T2/"><span>「NOI2002」银河英雄传说 - 带权并查集</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By licte</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.5.6"></script><script src="/js/fancybox.js?version=1.5.6"></script><script src="/js/sidebar.js?version=1.5.6"></script><script src="/js/copy.js?version=1.5.6"></script><script src="/js/fireworks.js?version=1.5.6"></script><script src="/js/transition.js?version=1.5.6"></script><script src="/js/scroll.js?version=1.5.6"></script><script src="/js/head.js?version=1.5.6"></script></body></html>
